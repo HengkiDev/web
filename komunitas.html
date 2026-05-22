@@ -447,6 +447,23 @@
             background: rgba(40, 70, 35, 0.95);
         }
 
+        .discord-btn {
+            background: #5865F2;
+            color: white;
+            border: none;
+            padding: var(--space-2) var(--space-5);
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-lg);
+            cursor: pointer;
+            margin-top: var(--space-3);
+            transition: all var(--motion-duration-instant);
+            border-radius: 4px;
+        }
+        .discord-btn:hover {
+            background: #4752C4;
+            transform: scale(1.02);
+        }
+
         .whatsapp-btn {
             background: #25D366;
             color: white;
@@ -625,13 +642,13 @@
         </div>
 
         <div class="cards-grid reveal">
-            <div class="card card-interactive" tabindex="0">
+            <div class="card" tabindex="0">
                 <div class="text-xl text-tertiary">Discord Server</div>
                 <p>Event trading diskusi ekonomi bantuan 24 jam dari member</p>
-                <button class="link" style="margin-top: var(--space-2);">Join Discord</button>
+                <button class="discord-btn" id="discordBtn">Join Discord</button>
             </div>
             
-            <div class="card card-interactive" tabindex="0">
+            <div class="card" tabindex="0">
                 <div class="text-xl text-tertiary">WhatsApp Group</div>
                 <p>Info terbaru giveaway dan ngobrol santai dengan sesama player</p>
                 <button class="whatsapp-btn" id="whatsappBtn">Join WhatsApp</button>
@@ -640,7 +657,9 @@
             <div class="card">
                 <div class="text-xl text-tertiary">Statistik Komunitas</div>
                 <ul class="list-clean">
-                    <li>Member Aktif 40</li>
+                    <li>Member Aktif 40+</li>
+                    <li>Member Discord 100+</li>
+                    <li>Member WhatsApp 50+</li>
                 </ul>
             </div>
         </div>
@@ -754,25 +773,13 @@
         if(mobileBtn) mobileBtn.addEventListener('click', toggleMobileMenu);
         if(menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
 
-        const interactiveCards = document.querySelectorAll('.card-interactive');
-        for(let i = 0; i < interactiveCards.length; i++) {
-            const card = interactiveCards[i];
-            card.addEventListener('click', function() {
-                const title = card.querySelector('.text-tertiary')?.innerText || '';
-                if(title.includes('Discord')) {
-                    window.open(DISCORD_LINK, '_blank');
-                } else if(title.includes('WhatsApp')) {
-                    window.open(WHATSAPP_LINK, '_blank');
-                }
-            });
-            card.addEventListener('keydown', function(e) {
-                if(e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    card.click();
-                }
+        const discordBtn = document.getElementById('discordBtn');
+        if(discordBtn) {
+            discordBtn.addEventListener('click', function() {
+                window.open(DISCORD_LINK, '_blank');
             });
         }
-        
+
         const whatsappBtn = document.getElementById('whatsappBtn');
         if(whatsappBtn) {
             whatsappBtn.addEventListener('click', function() {
