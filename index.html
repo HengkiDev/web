@@ -479,26 +479,47 @@
         }
         .ip-display {
             background: rgba(0,0,0,0.4);
-            padding: var(--space-4);
+            padding: var(--space-3) var(--space-4);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: var(--space-3);
         }
         .ip-text {
-            font-size: var(--font-size-2xl);
+            font-size: var(--font-size-xl);
             font-family: monospace;
             color: var(--color-accent-gold);
             letter-spacing: 1px;
+            word-break: break-all;
         }
-        @media (max-width: 900px) {
-            .server-info-grid { grid-template-columns: repeat(2, 1fr); }
+        .ip-btn {
+            flex-shrink: 0;
+            padding: var(--space-1) var(--space-4);
+            font-size: var(--font-size-md);
         }
         @media (max-width: 600px) {
-            .server-info-grid { grid-template-columns: 1fr; }
-            .ip-display { flex-direction: column; }
+            .ip-display {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .ip-text {
+                font-size: var(--font-size-lg);
+                text-align: center;
+                width: 100%;
+            }
+            .ip-btn {
+                width: auto;
+                padding: var(--space-1) var(--space-5);
+            }
+            .server-info-value { font-size: var(--font-size-xl); }
+            .server-info-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+            .server-info-item { padding: var(--space-2); }
+            .server-info-label { font-size: var(--font-size-xs); }
+        }
+        @media (max-width: 480px) {
+            .ip-text { font-size: var(--font-size-md); }
         }
 
         .btn {
@@ -541,6 +562,11 @@
             box-shadow: rgba(0,0,0,0.7) 5px 5px 0px 0px;
         }
         .btn-primary:active { transform: translate(2px, 2px); }
+        .btn-sm {
+            padding: var(--space-1) var(--space-4);
+            font-size: var(--font-size-md);
+            min-height: 36px;
+        }
 
         .card {
             background: rgba(30, 50, 25, 0.9);
@@ -610,20 +636,26 @@
             margin: var(--space-1) 0;
             font-size: var(--font-size-md);
         }
-        .event-button {
+        .event-buttons {
+            display: flex;
+            gap: var(--space-3);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--space-3);
+        }
+        .event-button-sm {
             background: linear-gradient(135deg, #2e7d32, #388e3c);
             border: 2px solid #66bb6a;
-            padding: var(--space-2) var(--space-6);
+            padding: var(--space-1) var(--space-4);
             font-family: var(--font-family-primary);
-            font-size: var(--font-size-lg);
+            font-size: var(--font-size-md);
             color: white;
             cursor: pointer;
             transition: all var(--motion-duration-instant);
-            margin-top: var(--space-3);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .event-button:hover {
+        .event-button-sm:hover {
             transform: translate(-2px, -2px);
             box-shadow: var(--shadow-1);
         }
@@ -798,18 +830,18 @@
             .section-title { font-size: var(--font-size-2xl); }
             .hero-title { font-size: var(--font-size-2xl); }
             .hero-image { max-width: 150px; }
-            .server-info-value { font-size: var(--font-size-xl); }
             .card { padding: var(--space-4); }
             .feature-card { width: 240px; padding: var(--space-3); }
             .feature-card .feature-title { font-size: var(--font-size-lg); }
             .feature-card:nth-child(even) { transform: translateY(15px); }
             .event-title { font-size: var(--font-size-2xl); }
+            .event-subtitle { font-size: var(--font-size-lg); }
+            .prize-item { font-size: var(--font-size-md); }
         }
         @media (max-width: 480px) {
             .hero-sub { font-size: var(--font-size-lg); }
             .feature-card { width: 220px; }
             .feature-card:nth-child(even) { transform: translateY(12px); }
-            .ip-text { font-size: var(--font-size-xl); }
         }
     </style>
 </head>
@@ -914,7 +946,7 @@
                 
                 <div class="ip-display">
                     <span class="ip-text">play.bibidkita.my.id</span>
-                    <button class="btn btn-primary" id="copy-ip-btn">Salin IP</button>
+                    <button class="btn btn-primary ip-btn" id="copy-ip-btn">Salin IP</button>
                 </div>
             </div>
         </div>
@@ -944,9 +976,9 @@
                     </ul>
                 </div>
                 
-                <div style="margin-top: var(--space-4);">
-                    <button class="event-button" id="submit-video-btn">Submit Link Video</button>
-                    <button class="event-button" id="wa-group-btn" style="margin-left: var(--space-3);">Gabung Grup WA</button>
+                <div class="event-buttons">
+                    <button class="event-button-sm" id="submit-video-btn">Submit Video</button>
+                    <button class="event-button-sm" id="wa-group-btn">Grup WhatsApp</button>
                 </div>
                 <p class="text-secondary" style="margin-top: var(--space-3); font-size: var(--font-size-sm);">Jangan sampai kehabisan slot Terbatas</p>
             </div>
@@ -1092,7 +1124,7 @@
         const DISCORD_LINK = 'https://discord.bibidkita.my.id';
         const WHATSAPP_LINK = 'https://whatsapp.bibidkita.my.id';
         const SUBMIT_FORM_LINK = 'https://forms.gle/your-form-link-here';
-        const WA_GROUP_LINK = 'https://chat.whatsapp.com/your-group-link';
+        const WA_GROUP_LINK = 'https://whatsapp.bibidkita.my.id';
         
         async function fetchServerStatus() {
             const playersEl = document.getElementById('server-players');
@@ -1123,13 +1155,13 @@
                     if(motdEl) motdEl.innerHTML = motd;
                 } else {
                     if(statusTextEl) statusTextEl.innerHTML = 'ONLINE';
-                    if(playersEl) playersEl.innerHTML = '19';
+                    if(playersEl) playersEl.innerHTML = '0';
                     if(versionEl) versionEl.innerHTML = '1.21.11';
                     if(motdEl) motdEl.innerHTML = 'BIBIDKITA SMP';
                 }
             } catch (error) {
                 if(statusTextEl) statusTextEl.innerHTML = 'ONLINE';
-                if(playersEl) playersEl.innerHTML = '19';
+                if(playersEl) playersEl.innerHTML = '0';
                 if(versionEl) versionEl.innerHTML = '1.21.11';
                 if(motdEl) motdEl.innerHTML = 'BIBIDKITA SMP';
             }
@@ -1279,7 +1311,7 @@
                 setTimeout(() => {
                     joinBtn.disabled = false;
                     joinBtn.textContent = 'Gabung Server';
-                    copyToClipboard(SERVER_HOST, 'IP Server berhasil disalin\n\nServer ' + SERVER_HOST + '\nPort Java 25565\nPort Bedrock 19132');
+                    copyToClipboard(SERVER_HOST, 'IP Server berhasil disalin\n\nServer ' + SERVER_HOST + '\nPort Bedrock 25542');
                 }, 600);
             });
         }
