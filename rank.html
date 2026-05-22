@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>BIBIDKITA SMP | Rank Server</title>
-      <link rel="icon" type="image/svg+xml" href="png/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="png/favicon.ico">
     <link rel="alternate icon" type="image/png" href="png/logo.png">
     <meta name="description" content="Server Minecraft Survival Economy Indonesia. Support Java & Bedrock. QuickShop, Claim Land, Set Home.">
     <meta name="theme-color" content="#0a1f0a">
@@ -492,12 +492,17 @@
             border-left: 3px solid #4caf50;
             padding-left: var(--space-3);
             margin-bottom: var(--space-1);
+            font-size: var(--font-size-md);
         }
         .separator {
             text-align: center;
             margin: var(--space-5) 0;
             font-size: var(--font-size-xl);
             color: var(--color-accent-gold);
+        }
+
+        .payment-info {
+            text-align: center;
         }
 
         .footer {
@@ -578,9 +583,23 @@
             .hero-image { max-width: 150px; }
             .rank-grid { grid-template-columns: 1fr; }
             .rank-title { font-size: var(--font-size-xl); }
+            .rank-price { font-size: var(--font-size-lg); }
+            .rank-features li { font-size: var(--font-size-sm); }
+            .card { padding: var(--space-4); }
+            .separator { font-size: var(--font-size-lg); }
+            .footer-btn { font-size: var(--font-size-md); }
+            .social-icon { padding: var(--space-1) var(--space-3); font-size: var(--font-size-md); }
         }
         @media (max-width: 480px) {
             .hero-sub { font-size: var(--font-size-lg); }
+            .hero-title { font-size: var(--font-size-xl); }
+            .rank-title { font-size: var(--font-size-lg); }
+            .rank-price { font-size: var(--font-size-md); }
+            .rank-features li { font-size: var(--font-size-xs); }
+            .payment-info h2 { font-size: var(--font-size-xl); }
+            .btn { font-size: var(--font-size-md); padding: var(--space-1) var(--space-4); }
+            .footer-links { gap: var(--space-2); }
+            .footer-btn { font-size: var(--font-size-sm); }
         }
     </style>
 </head>
@@ -651,7 +670,7 @@
             <div class="rank-card">
                 <div class="rank-title text-green">PETUALANG</div>
                 <div class="rank-price">Rp15.000</div>
-                <div class="text-secondary text-center" style="margin-bottom: var(--space-2);">Fitur dasar buat main santai</div>
+                <div class="text-secondary text-center" style="margin-bottom: var(--space-2); font-size: var(--font-size-sm);">Fitur dasar buat main santai</div>
                 <ul class="rank-features">
                     <li>/fly <span class="text-tertiary">- Terbang</span></li>
                     <li>/heal <span class="text-tertiary">- Sembuh total</span></li>
@@ -663,7 +682,7 @@
             <div class="rank-card">
                 <div class="rank-title text-yellow">KSATRIA</div>
                 <div class="rank-price">Rp25.000</div>
-                <div class="text-secondary text-center" style="margin-bottom: var(--space-2);">Step up buat yang udah aktif</div>
+                <div class="text-secondary text-center" style="margin-bottom: var(--space-2); font-size: var(--font-size-sm);">Step up buat yang udah aktif</div>
                 <ul class="rank-features">
                     <li>/fly <span class="text-tertiary">- Terbang</span></li>
                     <li>/heal <span class="text-tertiary">- Sembuh total</span></li>
@@ -680,7 +699,7 @@
             <div class="rank-card">
                 <div class="rank-title text-red">JENDERAL</div>
                 <div class="rank-price">Rp40.000</div>
-                <div class="text-secondary text-center" style="margin-bottom: var(--space-2);">Rank lengkap buat player aktif</div>
+                <div class="text-secondary text-center" style="margin-bottom: var(--space-2); font-size: var(--font-size-sm);">Rank lengkap buat player aktif</div>
                 <ul class="rank-features">
                     <li>/fly <span class="text-tertiary">- Terbang</span></li>
                     <li>/heal <span class="text-tertiary">- Sembuh total</span></li>
@@ -699,7 +718,7 @@
             <div class="rank-card">
                 <div class="rank-title text-gold">CUSTOM RANK</div>
                 <div class="rank-price">Rp50.000</div>
-                <div class="text-secondary text-center" style="margin-bottom: var(--space-2);">Fitur paling lengkap + nama bebas</div>
+                <div class="text-secondary text-center" style="margin-bottom: var(--space-2); font-size: var(--font-size-sm);">Fitur paling lengkap + nama bebas</div>
                 <ul class="rank-features">
                     <li>Semua fitur Jenderal <span class="text-tertiary">- Lengkap</span></li>
                     <li>Warna prefix CUSTOM <span class="text-tertiary">- Pilih sendiri</span></li>
