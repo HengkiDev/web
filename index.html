@@ -971,7 +971,7 @@
                     <ul style="text-align: left; margin-left: var(--space-4);">
                         <li>1. Buat video cinematic atau konten menarik tentang BIBIDKITA SMP</li>
                         <li>2. Upload ke TikTok / Instagram Reels</li>
-                        <li>3. Tag @bibidkita @eventbibidkita</li>
+                        <li>3. Pakai Hashtag dan tag #bibidkita #eventbibidkita , @justhengkii</li>
                         <li>4. Submit link video via form di bawah</li>
                     </ul>
                 </div>
@@ -1128,7 +1128,6 @@
         const SUBMIT_FORM_LINK = 'https://docs.google.com/forms/d/e/1FAIpQLSepHqvi05JAxpEnDdHWX8Y0_Adz0BW-LNfFvFACLfV469iBcQ/viewform?usp=publish-editor';
         const WA_GROUP_LINK = 'https://whatsapp.bibidkita.my.id';
         
-        // ========== PERBAIKAN UTAMA: FETCH STATUS SERVER ==========
         async function fetchServerStatus() {
             const playersEl = document.getElementById('server-players');
             const versionEl = document.getElementById('server-version');
@@ -1139,7 +1138,6 @@
             if(versionEl) versionEl.innerHTML = '<div class="loading-spinner"></div>';
             if(motdEl) motdEl.innerHTML = '<div class="loading-spinner"></div>';
             
-            // Daftar API untuk fallback (prioritas dari yang paling akurat)
             const apis = [
                 {
                     url: `https://api.mcsrvstat.us/3/${SERVER_HOST}`,
@@ -1191,9 +1189,8 @@
                         if(playersEl) playersEl.innerHTML = result.players;
                         if(versionEl) versionEl.innerHTML = result.version.substring(0, 30);
                         if(motdEl) motdEl.innerHTML = result.motd.substring(0, 40);
-                        return; // Berhasil, keluar dari fungsi
+                        return;
                     } else if (result.online === false) {
-                        // Server diketahui offline
                         if(statusTextEl) statusTextEl.innerHTML = 'OFFLINE';
                         if(playersEl) playersEl.innerHTML = '0';
                         if(versionEl) versionEl.innerHTML = '-';
@@ -1201,18 +1198,15 @@
                         return;
                     }
                 } catch (e) {
-                    console.log(`API ${api.url} gagal:`, e.message);
                     continue;
                 }
             }
             
-            // Jika semua API gagal, tampilkan pesan error
             if(statusTextEl) statusTextEl.innerHTML = '?';
             if(playersEl) playersEl.innerHTML = '?';
             if(versionEl) versionEl.innerHTML = '?';
             if(motdEl) motdEl.innerHTML = 'Gagal memuat';
         }
-        // ========== AKHIR PERBAIKAN ==========
         
         const featureList = [
             "QuickShop", "Claim Land", "Set Home", "Sell dan SellGUI", "NPC Trader",
@@ -1407,8 +1401,8 @@
             generateMobileFeatures();
             initDragScroll();
             startSmoothInfiniteScroll();
-            fetchServerStatus(); // Panggil pertama kali
-            setInterval(fetchServerStatus, 60000); // Update setiap 60 detik
+            fetchServerStatus();
+            setInterval(fetchServerStatus, 60000);
             setTimeout(checkReveal, 100);
         });
         
